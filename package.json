@@ -6,9 +6,9 @@
     "start": "ng serve",
     "build": "npm run build:lib && npm run build:app",
     "build:prod": "npm run build:lib && npm run build:app-prod",
-    "build:lib": "ng build rete-angular-render-plugin",
-    "build:app": "ng build rete-angular-demo-app",
-    "build:app-prod": "ng build rete-angular-demo-app --prod",
+    "build:lib": "ng build angular-render-plugin",
+    "build:app": "ng build astro-node-editor",
+    "build:app-prod": "ng build astro-node-editor --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
