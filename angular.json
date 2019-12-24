@@ -177,8 +177,8 @@
               "devServerTarget": "astro-node-editor:serve:production"
             },
             "ci": {
-              "devServerTarget": "rete-angular-demo-app:serve:production",
-              "protractorConfig": "projects/rete-angular-demo-app/e2e/protractor-ci.conf.js"
+              "devServerTarget": "astro-node-editor:serve:production",
+              "protractorConfig": "projects/astro-node-editor/e2e/protractor-ci.conf.js"
             }
           }
         }
