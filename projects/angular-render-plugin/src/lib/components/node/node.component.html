@@ -1,0 +1,13 @@
+<div *ngIf="node" [ngClass]="[selected(), node.name] | kebab" class="node">
+  <div class="title">{{node.name}}</div>
+  <div *ngFor="let output of outputs" class="output">
+    <div class="output-title">{{output.name}}</div>
+    <rete-socket [io]="output" [socket]="output.socket" rete-socket></rete-socket>
+  </div>
+  <div *ngFor="let control of controls" [rete-control]="control" class="control"></div>
+  <div *ngFor="let input of inputs" class="input">
+    <rete-socket [io]="input" [socket]="input.socket" rete-socket></rete-socket>
+    <div *ngIf="!input.showControl()" class="input-title">{{input.name}}</div>
+    <div *ngIf="input.showControl()" [rete-control]="input.control" class="input-control"></div>
+  </div>
+</div>

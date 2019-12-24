@@ -4,8 +4,7 @@
     "directive-selector": [
       true,
       "attribute",
-      "rete",
-      "camelCase"
+      "rete"
     ],
     "component-selector": [
       true,
