@@ -6,16 +6,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NumberComponent} from './rete/controls/number-control';
 import {ReteComponent} from './rete/rete.component';
 import {ReteModule} from '../../../angular-render-plugin/src/public-api';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReteComponent,
-    NumberComponent
+    NumberComponent,
+    ToolbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     ReteModule
   ],
   providers: [],
