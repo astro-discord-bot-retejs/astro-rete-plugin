@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NumberComponent} from './rete/controls/number-control';
+import {ReteComponent} from './rete/rete.component';
+import {ReteModule} from '../../../angular-render-plugin/src/public-api';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReteComponent,
+    NumberComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReteModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NumberComponent]
 })
 export class AppModule { }
