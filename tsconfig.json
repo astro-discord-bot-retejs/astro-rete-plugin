@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-render-plugin": [
+        "dist/angular-render-plugin"
+      ],
+      "angular-render-plugin/*": [
+        "dist/angular-render-plugin/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -2,5 +2,163 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "angular-render-plugin": {
+      "projectType": "library",
+      "root": "projects/angular-render-plugin",
+      "sourceRoot": "projects/angular-render-plugin/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-render-plugin/tsconfig.lib.json",
+            "project": "projects/angular-render-plugin/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-render-plugin/src/test.ts",
+            "tsConfig": "projects/angular-render-plugin/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-render-plugin/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-render-plugin/tsconfig.lib.json",
+              "projects/angular-render-plugin/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "astro-node-editor": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/astro-node-editor",
+      "sourceRoot": "projects/astro-node-editor/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/astro-node-editor",
+            "index": "projects/astro-node-editor/src/index.html",
+            "main": "projects/astro-node-editor/src/main.ts",
+            "polyfills": "projects/astro-node-editor/src/polyfills.ts",
+            "tsConfig": "projects/astro-node-editor/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/astro-node-editor/src/favicon.ico",
+              "projects/astro-node-editor/src/assets"
+            ],
+            "styles": [
+              "projects/astro-node-editor/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/astro-node-editor/src/environments/environment.ts",
+                  "with": "projects/astro-node-editor/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "astro-node-editor:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "astro-node-editor:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "astro-node-editor:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/astro-node-editor/src/test.ts",
+            "polyfills": "projects/astro-node-editor/src/polyfills.ts",
+            "tsConfig": "projects/astro-node-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/astro-node-editor/karma.conf.js",
+            "assets": [
+              "projects/astro-node-editor/src/favicon.ico",
+              "projects/astro-node-editor/src/assets"
+            ],
+            "styles": [
+              "projects/astro-node-editor/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/astro-node-editor/tsconfig.app.json",
+              "projects/astro-node-editor/tsconfig.spec.json",
+              "projects/astro-node-editor/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/astro-node-editor/e2e/protractor.conf.js",
+            "devServerTarget": "astro-node-editor:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "astro-node-editor:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "astro-node-editor"
 }
