@@ -5,6 +5,11 @@
   "projects": {
     "angular-render-plugin": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/angular-render-plugin",
       "sourceRoot": "projects/angular-render-plugin/src",
       "prefix": "lib",
@@ -20,8 +25,16 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/angular-render-plugin/src/test.ts",
+            "polyfills": "projects/angular-render-plugin/src/polyfills.ts",
             "tsConfig": "projects/angular-render-plugin/tsconfig.spec.json",
             "karmaConfig": "projects/angular-render-plugin/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "progress": false,
+              "browsers": "ChromeHeadlessCI"
+            }
           }
         },
         "lint": {
@@ -131,6 +144,13 @@
               "projects/astro-node-editor/src/styles.scss"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "progress": false,
+              "browsers": "ChromeHeadlessCI"
+            }
           }
         },
         "lint": {
@@ -155,6 +175,10 @@
           "configurations": {
             "production": {
               "devServerTarget": "astro-node-editor:serve:production"
+            },
+            "ci": {
+              "devServerTarget": "rete-angular-demo-app:serve:production",
+              "protractorConfig": "projects/rete-angular-demo-app/e2e/protractor-ci.conf.js"
             }
           }
         }

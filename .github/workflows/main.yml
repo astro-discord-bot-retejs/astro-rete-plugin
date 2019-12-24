@@ -1,0 +1,44 @@
+name: CI Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      ## cache dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      ## set up node.js
+      - name: Set up node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.1
+      ## install dependencies
+      - name: Install dependencies
+        run: npm install
+      ## lint check
+      - name: Run lint checks
+        run: npm run lint
+      ## karma unit tests
+      - name: Run unit tests
+        run: npm test -- --configuration=ci
+      ## normal builds
+      - name: Run dev build
+        run: npm run build
+      ## production build for demo-app
+      - name: Run prod build
+        run: npm run build:app -- --prod
+      ## protractor end-to-end tests
+      - name: Run e2e tests
+        run: npm run e2e -- --configuration=ci
