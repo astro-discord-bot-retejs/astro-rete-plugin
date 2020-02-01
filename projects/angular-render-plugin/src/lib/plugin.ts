@@ -43,5 +43,14 @@ export const AngularRenderPlugin: Plugin = {
 
       el.appendChild(element);
     });
+
+    editor.on(['connectioncreated', 'connectionremoved'], connection => {
+      connection.output.node.update();
+      connection.input.node.update();
+    });
+
+    editor.on('nodeselected', () => {
+      editor.nodes.forEach(n => n.update());
+    });
   }
 };

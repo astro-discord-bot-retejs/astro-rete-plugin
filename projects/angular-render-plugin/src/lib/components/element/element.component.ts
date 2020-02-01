@@ -1,8 +1,19 @@
-import {Component, ComponentFactoryResolver, Injector, Input, OnDestroy, OnInit, Type, ViewContainerRef} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ComponentFactoryResolver,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Type,
+  ViewContainerRef
+} from '@angular/core';
 import {Props} from '../../types';
 
 @Component({
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementComponent implements OnInit, OnDestroy {
   @Input() component!: Type<Component>;
